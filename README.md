@@ -3,11 +3,6 @@
 
 A simple and interactive Body Mass Index (BMI) calculator built using **HTML**, **CSS**, and **JavaScript**. This project allows users to input their height and weight, calculate their BMI, and view the result along with a health category and emoji feedback.
 
----
-
-## 🚀 Live Demo
-
-👉 [Click here to view the live site](https://divya494.github.io/bmi-generator/)  
 
 ---
 
