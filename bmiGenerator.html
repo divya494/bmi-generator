@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Generator</title>
+</head>
+
+<style>
+
+    h1{
+        text-align: center;
+    }
+
+    label{
+        padding-top: 20px;
+    }
+
+
+  
+
+</style>
+<body>
+
+    <nav>
+        <div class="container">
+
+            <h1>BMI Calculator</h1><br>
+            <center>
+
+            <form>
+
+                <label>Height in CM: </label><input type="text" id="height"><br><br>
+
+                <label>Weight in KG: </label><input type="text" id="weight"><br><br><br>
+
+                <button>Calculate</button><br><br>
+                <button type="button" id="resetBtn">Reset</button><br><br>
+
+                <div id="results"></div><br><br>
+
+                <div id="weight guide">
+
+                    <h3>BMI Weight Guide</h3>
+                    <p>under weight = less than 18.6</p>
+                    <p>normal range = 18.6 and 24.9</p>
+                    <p>over weight = greater than 24.9</p>
+
+                </div>
+
+            </form>
+            </center>
+
+
+        </div>
+
+    </nav>
+    
+</body>
+
+<script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit',(e)=>{
+
+        e.preventDefault();
+
+        const height = parseInt(document.querySelector('#height').value) // as we don't know the value is may be string so to prevent this we're using here "ParseInt"
+        const weight = parseInt(document.querySelector('#weight').value)
+        const results = document.querySelector('#results')
+
+        if(height === '' || height < 0 || isNaN(height)){
+
+            results.innerHTML = `give a valid height ${height}`;
+        }
+
+        // results.innerHTML = ` ${height}`
+
+        
+      else if(weight === '' || weight < 0 || isNaN(weight)){
+
+            results.innerHTML = `give a valid weight ${weight}`;
+        }
+
+        else{
+            const bmi = (weight / ((height * height) / 10000)).toFixed(2) // using toFixed() to prevent more then 2 decimal values
+            let category = "";
+            let emoji = "";
+            let color = "";
+
+            if(bmi < 18.6){
+                category = "underWeight";
+                emoji = "😟";
+                color = "blue";
+            }
+
+            else if(bmi >=18.6 && bmi <= 24.9 ){
+                category = "Normal";
+                emoji = "😊";
+                color = "green";
+            }
+
+             else {
+               category = "Overweight";
+               emoji = "😅";
+               color = "red";
+           }
+
+
+
+
+            // show the result
+            results.style.color = color;
+            results.innerHTML = `<span>${bmi}</span> (${category}) ${emoji}`;
+          
+        }
+
+
+    });
+
+       const resetBtn = document.querySelector('#resetBtn');
+       resetBtn.addEventListener('click', (e) => {
+        document.querySelector('#height').value = '';
+        document.querySelector('#weight').value = '';
+        document.querySelector('#results').innerHTML = '';
+
+
+       });
+
+    
+
+
+
+
+
+
+
+</script>
+</html>
